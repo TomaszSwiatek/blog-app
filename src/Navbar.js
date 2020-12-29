@@ -4,7 +4,12 @@ const Navbar = () => {
             <h1>Ofc Blog</h1>
             <div className="links">
                 <a href="/">Home</a>
-                <a href="/create">New blog</a>
+                {/* second set of curly braces is just a representive of an javascript object. */}
+                <a href="/create" style={{
+                    color: "white",
+                    backgroundColor: "#f1356d",
+                    borderRadius: '8px'
+                }}>New blog</a>
             </div>
         </nav>
     )
