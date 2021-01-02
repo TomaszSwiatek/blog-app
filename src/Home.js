@@ -1,21 +1,22 @@
+import { useState } from 'react'  //musimy zaimportować tą funkcjonalność biblioteki
+
+
 const Home = () => {
-    // we have to ad const when it is functional component
-    const handleClick = () => {
-        console.log(`clicked:)`)
-    }
 
-    const handleClickSecond = (name) => {
-        console.log(`clicked:) for you ${name}`)
-    }
-
+    const [blogs, setBlogs] = useState([
+        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+    ]);
     return (
-        <div>
-            <h2>Homepage</h2>
-            {/* if we have functional component we don;t have to put this.handleClick */}
-            <button onClick={handleClick}>Click me!</button>
-            {/* we can take an event parameter fron anonymous function and like that we can pass it down to out hadnlClick function */}
-            <button onClick={(e) => { handleClickSecond('Kryl', e) }}>Kryl clicking</button>
+        <div className="home">
+            { blogs.map(blog => (
+                <div className="blog-preview" key={blog.id}>
+                    <h2>{blog.title}</h2>
+                    <p>Written by {blog.author}</p>
 
+                </div>
+            ))}
         </div>
     )
 }
