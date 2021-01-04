@@ -1,4 +1,5 @@
 import { useState } from 'react'  //musimy zaimportować tą funkcjonalność biblioteki
+import BlogList from './BlogList';
 
 
 const Home = () => {
@@ -10,13 +11,8 @@ const Home = () => {
     ]);
     return (
         <div className="home">
-            { blogs.map(blog => (
-                <div className="blog-preview" key={blog.id}>
-                    <h2>{blog.title}</h2>
-                    <p>Written by {blog.author}</p>
-
-                </div>
-            ))}
+            {/* only blogs becouse of funct. component, and we refer to function inside functional component */}
+            <BlogList blogs={blogs} title="My title of blog" />
         </div>
     )
 }
