@@ -4,11 +4,7 @@ import BlogList from './BlogList';
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState([
-        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-    ]);
+    const [blogs, setBlogs] = useState(null);
     const handleDelete = (id) => {
         const fillteredBlogs = blogs.filter(blog =>
             blog.id !== id
@@ -16,13 +12,23 @@ const Home = () => {
         setBlogs(fillteredBlogs);
     }
     useEffect(() => {
-        console.log("useEffect hook ran")
-        console.log(blogs)
-    });
+        fetch('http://localhost:8000/blogs').then(
+            res => {
+                return res.json();  //this parses the json to js object for us. this operation is also asynchronious so we have to use second promise below..
+            }
+        ).then(
+            data => {
+                setBlogs(data)
+            }
+        )
+    }, []);
     return (
         <div className="home">
             {/* only blogs becouse of funct. component, and we refer to function inside functional component */}
-            <BlogList blogs={blogs} handleDelete={handleDelete} title="My title of blog" />
+            {
+                // if const on the left returns true then interpreter comes to the right side of && and render it.
+                blogs && <BlogList blogs={blogs} handleDelete={handleDelete} title="My title of blog" />
+            }
         </div>
     )
 }
