@@ -5,12 +5,7 @@ import BlogList from './BlogList';
 const Home = () => {
 
     const [blogs, setBlogs] = useState(null);
-    const handleDelete = (id) => {
-        const fillteredBlogs = blogs.filter(blog =>
-            blog.id !== id
-        );
-        setBlogs(fillteredBlogs);
-    }
+
     useEffect(() => {
         fetch('http://localhost:8000/blogs').then(
             res => {
@@ -27,7 +22,7 @@ const Home = () => {
             {/* only blogs becouse of funct. component, and we refer to function inside functional component */}
             {
                 // if const on the left returns true then interpreter comes to the right side of && and render it.
-                blogs && <BlogList blogs={blogs} handleDelete={handleDelete} title="My title of blog" />
+                blogs && <BlogList blogs={blogs} title="My title of blog" />
             }
         </div>
     )
