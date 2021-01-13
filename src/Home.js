@@ -1,32 +1,13 @@
 import { useState, useEffect } from 'react'  //musimy zaimportować tą funkcjonalność biblioteki
 import BlogList from './BlogList';
+import useFetch from './useFetch';
 
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null)
-    useEffect(() => {
-        fetch('http://localhost:8000/blogs').then(
-            res => {
-                // Here we create error if response attr is not proper, but we catch it below in catch() function.
-                if (!res.ok) {
-                    throw Error('could not fetch the data - custom message')
+    //   so we use destructuring :
+    const { data: blogs, isPending, error } = useFetch('http://localhost:8000/blogs');
 
-                }
-                return res.json();  //this parses the json to js object for us. this operation is also asynchronious so we have to use second promise below..
-            }
-        ).then(
-            data => {
-                setBlogs(data)
-                setIsPending(false);
-                setError(null)
-            }
-        ).catch(
-            (err) => { setError(err.message) }
-        )
-    }, []);
     return (
         <div className="home">
             {/* only blogs becouse of funct. component, and we refer to function    inside functional component */}
