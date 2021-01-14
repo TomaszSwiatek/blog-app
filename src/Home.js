@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'  //musimy zaimportować tą funkcjonalność biblioteki
+
 import BlogList from './BlogList';
 import useFetch from './useFetch';
 
@@ -17,7 +17,6 @@ const Home = () => {
             {
                 isPending && <div>Data is loading...</div>
             }
-
             {
                 // if const on the left returns true then interpreter comes to the right side of && and render it.
                 blogs && <BlogList blogs={blogs} title="My title of blog" />
