@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 // props is word we pass as an argument but it can be named differently. it is only convention of naming
 const BlogList = (props) => {
     const blogs = props.blogs;
@@ -9,7 +10,9 @@ const BlogList = (props) => {
             {title}
             { blogs.map(blog => (
                 <div className="blog-preview" key={blog.id}>
-                    <h2>{blog.title}</h2>
+                    <Link to={`blogs/${blog.id}`}>
+                        <h2>{blog.title}</h2>
+                    </Link>
                     <p>Written by {blog.author}</p>
 
                 </div>
